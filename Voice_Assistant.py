@@ -6,7 +6,7 @@ import time
 
 
 # Initialize OpenAI API
-openai.api_key = "api key"
+openai.api_key = "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"
 # Initialize the text to speech engine 
 engine=pyttsx3.init()
 
@@ -37,13 +37,13 @@ def speak_text(text):
 def main():
     while True:
         #Waith for user say "genius"
-        print("Say 'Genius' to start recording your question. If you would like to close the program, say 'end'")
+        print("Say 'Start' to start recording your question. If you would like to close the program, say 'end'")
         with sr.Microphone() as source:
             recognizer=sr.Recognizer()
             audio=recognizer.listen(source)
             try:
                 transcription = recognizer.recognize_google(audio)
-                if transcription.lower()=="genius":
+                if transcription.lower()=="start":
                     #record audio
                     filename ="input.wav"
                     print("Say your question")
@@ -65,11 +65,6 @@ def main():
                             
                         #read response using text-to-speech
                         speak_text(response)
-                        
-                        # Check if the user wants to end the program
-                        if "close" in response.lower():
-                            print("Ending the program...")
-                            break
             except Exception as e:
                 
                 print("An error occurred : {}".format(e))
